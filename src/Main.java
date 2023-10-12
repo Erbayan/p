@@ -1,8 +1,8 @@
 
-interface plans{
+interface Plans {
     public void get();
 }
-class BasicPlan implements plans {
+class BasicPlan implements Plans {
     @Override
     public void get() {
         System.out.print("100min for call");
@@ -10,10 +10,10 @@ class BasicPlan implements plans {
 
 }
 
-abstract class PlanDecorator implements plans{
-    private plans plans;
+abstract class PlanDecorator implements Plans {
+    private Plans plans;
 
-    public void PlanDecorator(plans plans) {
+    public void PlanDecorator(Plans plans) {
         this.plans = plans;
     }
 
@@ -24,7 +24,7 @@ abstract class PlanDecorator implements plans{
 }
 
 class MediumPlan extends PlanDecorator {
-    public MediumPlan(plans plans) {
+    public MediumPlan(Plans plans) {
         super.PlanDecorator(plans);
     }
 
@@ -37,7 +37,7 @@ class MediumPlan extends PlanDecorator {
 
 class AdvancePlan extends PlanDecorator {
 
-    public  AdvancePlan(plans plans) {
+    public  AdvancePlan(Plans plans) {
         super.PlanDecorator(plans);
     }
 
@@ -51,13 +51,13 @@ class AdvancePlan extends PlanDecorator {
 public class Main {
     public static void main(String[] args) {
         System.out.println("Basic plan:");
-        plans basic = new BasicPlan();
+        Plans basic = new BasicPlan();
         basic.get();
         System.out.println("\nMedium plan:");
-        plans medium = new MediumPlan(new BasicPlan());
+        Plans medium = new MediumPlan(new BasicPlan());
         medium.get();
         System.out.println("\nAdvance plan: ");
-        plans advance = new AdvancePlan(new MediumPlan(new BasicPlan()));
+        Plans advance = new AdvancePlan(new MediumPlan(new BasicPlan()));
         advance.get();
     }
 }
